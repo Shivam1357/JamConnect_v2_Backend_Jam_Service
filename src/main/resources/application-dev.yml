@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:jamconnect_jam}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+# Same signing secret as User Service's dev config — Jam Service only
+# verifies tokens, never issues them, so this MUST match exactly.
+# Placeholder below; replace with the real shared dev secret.
+jwt:
+  secret: ${JWT_SECRET:ZGV2LW9ubHktc2VjcmV0LWtleS1kby1ub3QtdXNlLWluLXByb2QtcGxlYXNlLWNoYW5nZQ==}
+
+logging:
+  level:
+    com.jamconnect.jamservice: DEBUG
+    org.hibernate.SQL: DEBUG
